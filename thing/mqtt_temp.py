@@ -29,17 +29,20 @@ def setup(device):
 
 
 def loop (device):
-    device.send(json.dumps({
-        "device_id": device.id,
-        "counter": device.counter,
-        "measure": "temperature",
-        "value": random.gauss(25,15)
-    }))
+    device.send(
+        json.dumps({
+            "device_id": device.id,
+            "counter": device.counter,
+            "temperature": random.gauss(25,15),
+            "battery": device.battery
+        }),
+        "virtual_things"
+    )
     device.counter += 1
 
-def send(device, message):
+def send(device, message, topic):
     print(message)
-    mqtt_client.publish("virtual_things", payload=message, qos=0, retain=False)
+    mqtt_client.publish(topic, payload=message, qos=0, retain=False)
 
 #
 ### Configuration
