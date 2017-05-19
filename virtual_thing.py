@@ -70,7 +70,7 @@ class VirtualThing(threading.Thread):
             send: capacity lost on a single device send operation.
             compute_sg: capacity lost per second running.
             alive_sg: capacity lost per second alive. Independent from compute_sg.
-        behaviour: lambda float: float
+        behaviour: str from ['lineal']
             Mapping function from cumulative cost to remaining voltage.
         """
         functions = {
